@@ -16,13 +16,6 @@ def create_owner_phone_pure(apps, schema_editor):
         flat.save()
 
 
-def move_backward(apps, schema_editor):
-    flat_model = apps.get_model('property', 'Flat')
-    for flat in flat_model.objects.all():
-        flat.owner_phone_pure = ''
-        flat.save()
-
-
 class Migration(migrations.Migration):
 
     dependencies = [
@@ -30,5 +23,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(create_owner_phone_pure, move_backward)
+        migrations.RunPython(create_owner_phone_pure)
     ]

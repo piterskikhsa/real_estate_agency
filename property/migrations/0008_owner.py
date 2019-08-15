@@ -11,6 +11,11 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
+        migrations.RenameField(
+            model_name='flat',
+            old_name='owner',
+            new_name='owner_deprecated',
+        ),
         migrations.CreateModel(
             name='Owner',
             fields=[
@@ -18,7 +23,7 @@ class Migration(migrations.Migration):
                 ('owner', models.CharField(max_length=200, verbose_name='ФИО владельца')),
                 ('owners_phonenumber', models.CharField(max_length=20, verbose_name='Номер владельца')),
                 ('owner_phone_pure', phonenumber_field.modelfields.PhoneNumberField(blank=True, max_length=128, region=None, verbose_name='Нормализованный номер владельца')),
-                ('owner_flats', models.ManyToManyField(related_name='owner_flats', to='property.Flat', verbose_name='Квартиры в собственности')),
+                ('flats', models.ManyToManyField(related_name='owner_flats', to='property.Flat', verbose_name='Квартиры в собственности')),
             ],
         ),
     ]
