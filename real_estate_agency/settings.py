@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
 
     'property.apps.PropertyConfig',
+    'phonenumber_field',
 ]
 
 MIDDLEWARE = [
@@ -87,6 +88,8 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
 LANGUAGE_CODE = 'ru'
+
+PHONENUMBER_DEFAULT_REGION = 'RU'
 
 TIME_ZONE = 'Europe/Moscow'
 
