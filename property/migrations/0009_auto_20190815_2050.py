@@ -7,9 +7,9 @@ def create_owner_phone_pure(apps, schema_editor):
     flat_model = apps.get_model('property', 'Flat')
     owner_model = apps.get_model('property', 'Owner')
     for flat in flat_model.objects.all():
-        owner_model.objects.create(owner=flat.owner_deprecated,
-                                   owners_phonenumber=flat.owners_phonenumber,
-                                   owner_phone_pure=flat.owner_phone_pure, )
+        owner_model.objects.get_or_create(owner=flat.owner_deprecated,
+                                          owners_phonenumber=flat.owners_phonenumber,
+                                          owner_phone_pure=flat.owner_phone_pure, )
 
 
 class Migration(migrations.Migration):

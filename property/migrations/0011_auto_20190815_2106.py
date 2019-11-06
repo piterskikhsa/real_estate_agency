@@ -6,11 +6,12 @@ from django.db import migrations
 def create_owner(apps, schema_editor):
     Flat = apps.get_model('property', 'Flat')
     Owner = apps.get_model('property', 'Owner')
-    Owner.objects.all().delete()
     for flat in Flat.objects.all():
-        new_owner = Owner(owner=flat.owner_deprecated, owners_phonenumber=flat.owners_phonenumber, owner_phone_pure=flat.owner_phone_pure)
-        new_owner.save()
-        new_owner.flats.add(flat)
+        owner, created = Owner.objects.get_or_create(owner=flat.owner_deprecated,
+                                            owners_phonenumber=flat.owners_phonenumber,
+                                            owner_phone_pure=flat.owner_phone_pure)
+        if created:
+            owner.flats.add(flat)
 
 
 class Migration(migrations.Migration):

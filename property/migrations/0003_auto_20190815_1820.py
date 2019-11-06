@@ -6,7 +6,7 @@ from django.db import migrations
 def update_new_building(apps, schema_editor):
     flat_model = apps.get_model('property', 'Flat')
     for flat in flat_model.objects.all():
-        flat.new_building = True if flat.construction_year >= 2015 else False
+        flat.new_building = flat.construction_year >= 2015
         flat.save()
 
 
